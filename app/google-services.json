@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "859466100463",
+    "project_id": "boom-356fb",
+    "storage_bucket": "boom-356fb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:859466100463:android:174cfc4ed30279e807751a",
+        "android_client_info": {
+          "package_name": "com.example.expensetracker"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAjh9UnzheOdu-geKN3G4UL5OF18Quwuvk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

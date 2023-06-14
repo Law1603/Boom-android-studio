@@ -69,11 +69,24 @@ public class MainActivity extends AppCompatActivity {
      SavingTextView = findViewById(R.id.SavingTextView);
         todayTextView= findViewById(R.id.todayTextView);
 
-     mAuth = FirebaseAuth.getInstance();
-     onlineUserID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-     budgetRef = FirebaseDatabase.getInstance().getReference("budget").child(onlineUserID);
-     expensesRef = FirebaseDatabase.getInstance().getReference("expenses").child(onlineUserID);
-     personalRef = FirebaseDatabase.getInstance().getReference("personal").child(onlineUserID);
+
+
+        mAuth = FirebaseAuth.getInstance();
+        if (mAuth.getCurrentUser() != null) {
+            onlineUserID = mAuth.getCurrentUser().getUid();
+            budgetRef = FirebaseDatabase.getInstance().getReference("budget").child(onlineUserID);
+            expensesRef = FirebaseDatabase.getInstance().getReference("expenses").child(onlineUserID);
+            personalRef = FirebaseDatabase.getInstance().getReference("personal").child(onlineUserID);
+        } else {
+            // Handle the case when the user is not logged in
+            // For example, navigate them to the login screen
+            startActivity(new Intent(MainActivity.this, LoginActivity.class));
+            finish();
+            return;
+        }
+
+//...
+
 
 
 

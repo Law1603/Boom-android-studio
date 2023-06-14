@@ -34,10 +34,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="10dp"
-                android:background="#38023B"
+                android:background="@color/teal_200"
                 android:gravity="center_horizontal"
                 android:text="0.00"
-                android:textColor="@color/teal_700"
+                android:textColor="@color/black"
                 android:textSize="17dp"
                 android:textStyle="bold"
                 android:visibility="gone" />

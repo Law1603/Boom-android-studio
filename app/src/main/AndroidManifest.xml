@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ExpenseTracker">
         <activity
+            android:name=".Changepassword"
+            android:exported="false" />
+        <activity
+            android:name=".resetpasswordActivity"
+            android:exported="false" />
+        <activity
             android:name=".AcountActivity"
             android:exported="false" />
         <activity

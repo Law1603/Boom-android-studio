@@ -16,6 +16,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+
 
 public class RegistrationActivity extends AppCompatActivity {
 
@@ -34,7 +37,7 @@ public class RegistrationActivity extends AppCompatActivity {
         email = findViewById(R.id.emailText);
         password = findViewById(R.id.passwordText);
         registerBtn = findViewById(R.id.registerBtn);
-        registerQn= findViewById(R.id.registerQn);
+        registerQn = findViewById(R.id.registerQn);
 
         mAuth = FirebaseAuth.getInstance();
         progressDialog = new ProgressDialog(this);
@@ -42,7 +45,7 @@ public class RegistrationActivity extends AppCompatActivity {
         registerQn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(RegistrationActivity.this,LoginActivity.class);
+                Intent intent = new Intent(RegistrationActivity.this, LoginActivity.class);
                 startActivity(intent);
             }
         });
@@ -54,28 +57,22 @@ public class RegistrationActivity extends AppCompatActivity {
                 String passwordString = password.getText().toString();
 
 
-                if(TextUtils.isEmpty(emailString)){
+                if (TextUtils.isEmpty(emailString)) {
                     email.setError("Email is Required.....");
-                }
-
-                else if(TextUtils.isEmpty(passwordString)){
+                } else if (TextUtils.isEmpty(passwordString)) {
                     password.setError("Password is Required.....");
-                }
-                else{
+                } else {
                     progressDialog.setMessage("REGISTRATION is IN PROGRESS");
                     progressDialog.setCanceledOnTouchOutside(false);
                     progressDialog.show();
 
-                    mAuth.createUserWithEmailAndPassword(emailString,passwordString).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    mAuth.createUserWithEmailAndPassword(emailString, passwordString).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-                            if(task.isSuccessful()){
-                                Intent intent = new Intent(RegistrationActivity.this,MainActivity.class);
-                                startActivity(intent);
-                                finish();
-                                progressDialog.dismiss();
-                            }else{
-                                Toast.makeText(RegistrationActivity.this,task.getException().toString(),Toast.LENGTH_SHORT).show();
+                            if (task.isSuccessful()) {
+                                sendEmailVerification(); // Calling the method here
+                            } else {
+                                Toast.makeText(RegistrationActivity.this, task.getException().toString(), Toast.LENGTH_SHORT).show();
                                 progressDialog.dismiss();
                             }
                         }
@@ -83,6 +80,29 @@ public class RegistrationActivity extends AppCompatActivity {
                 }
             }
         });
+    }
 
+    private void sendEmailVerification()
+    {
+        FirebaseUser firebaseUser=mAuth.getCurrentUser();
+        if(firebaseUser!=null)
+        {
+            firebaseUser.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if(task.isSuccessful())
+                    {
+                        Toast.makeText(RegistrationActivity.this,"Registration Successful.Verification mail sent successfully..",Toast.LENGTH_LONG).show();
+                        mAuth.signOut();
+                        finish();
+                        startActivity(new Intent(RegistrationActivity.this,LoginActivity.class));
+                    }
+                    else
+                    {
+                        Toast.makeText(RegistrationActivity.this,"Error occurred sending verification mail..",Toast.LENGTH_LONG).show();
+                    }
+                }
+            });
+        }
     }
 }

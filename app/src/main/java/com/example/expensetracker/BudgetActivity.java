@@ -120,7 +120,7 @@ public class BudgetActivity extends AppCompatActivity {
                         Data data = ds.getValue(Data.class);
                         totalamount+= data.getAmount();
 
-                        String sTotal = String.valueOf("Month Budget : \u20B9"+totalamount);
+                        String sTotal = String.valueOf("Month Budget : $"+totalamount);
                         totalBudgetAmountTextView.setText(sTotal);
                     }
 

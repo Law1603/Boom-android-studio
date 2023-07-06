@@ -6,6 +6,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,21 +19,23 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-
+import java.util.regex.Pattern;
 
 public class RegistrationActivity extends AppCompatActivity {
 
-    private EditText email,password;
+    private EditText email, password;
     private Button registerBtn;
     private TextView registerQn;
     private FirebaseAuth mAuth;
     private ProgressDialog progressDialog;
 
+    // Regular expression to check if password contains at least one capital letter and a symbol
+    private static final Pattern PASSWORD_PATTERN = Pattern.compile("^.*(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).*$");
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
-
 
         email = findViewById(R.id.emailText);
         password = findViewById(R.id.passwordText);
@@ -56,11 +59,12 @@ public class RegistrationActivity extends AppCompatActivity {
                 String emailString = email.getText().toString();
                 String passwordString = password.getText().toString();
 
-
                 if (TextUtils.isEmpty(emailString)) {
                     email.setError("Email is Required.....");
                 } else if (TextUtils.isEmpty(passwordString)) {
                     password.setError("Password is Required.....");
+                } else if (!isValidPassword(passwordString)) {
+                    password.setError("Password must be at least 8 characters, include a capital letter and a symbol");
                 } else {
                     progressDialog.setMessage("REGISTRATION is IN PROGRESS");
                     progressDialog.setCanceledOnTouchOutside(false);
@@ -82,27 +86,26 @@ public class RegistrationActivity extends AppCompatActivity {
         });
     }
 
-    private void sendEmailVerification()
-    {
-        FirebaseUser firebaseUser=mAuth.getCurrentUser();
-        if(firebaseUser!=null)
-        {
+    private void sendEmailVerification() {
+        FirebaseUser firebaseUser = mAuth.getCurrentUser();
+        if (firebaseUser != null) {
             firebaseUser.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
-                    if(task.isSuccessful())
-                    {
-                        Toast.makeText(RegistrationActivity.this,"Registration Successful.Verification mail sent successfully..",Toast.LENGTH_LONG).show();
+                    if (task.isSuccessful()) {
+                        Toast.makeText(RegistrationActivity.this, "Registration Successful. Verification mail sent successfully..", Toast.LENGTH_LONG).show();
                         mAuth.signOut();
                         finish();
-                        startActivity(new Intent(RegistrationActivity.this,LoginActivity.class));
-                    }
-                    else
-                    {
-                        Toast.makeText(RegistrationActivity.this,"Error occurred sending verification mail..",Toast.LENGTH_LONG).show();
+                        startActivity(new Intent(RegistrationActivity.this, LoginActivity.class));
+                    } else {
+                        Toast.makeText(RegistrationActivity.this, "Error occurred sending verification mail..", Toast.LENGTH_LONG).show();
                     }
                 }
             });
         }
+    }
+
+    private boolean isValidPassword(String password) {
+        return password.length() >= 8 && PASSWORD_PATTERN.matcher(password).matches();
     }
 }

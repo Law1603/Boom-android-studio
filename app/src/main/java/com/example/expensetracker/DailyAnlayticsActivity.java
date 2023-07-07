@@ -183,7 +183,7 @@ public class DailyAnlayticsActivity extends AppCompatActivity {
                         Object total = map.get("amount");
                         int pTotal = Integer.parseInt(String.valueOf(total));
                         totalAmount += pTotal;
-                        analyticsOtherAmount.setText("\u20B9" + String.valueOf(totalAmount));
+                        analyticsOtherAmount.setText("$" + String.valueOf(totalAmount));
                     }
                     personalRef.child("dayOther").setValue(totalAmount);
                 }
@@ -226,7 +226,7 @@ public class DailyAnlayticsActivity extends AppCompatActivity {
                         Object total = map.get("amount");
                         int pTotal = Integer.parseInt(String.valueOf(total));
                         totalAmount += pTotal;
-                        analyticsPersonalAmount.setText("\u20B9" + String.valueOf(totalAmount));
+                        analyticsPersonalAmount.setText("$" + String.valueOf(totalAmount));
                     }
                     personalRef.child("dayPersonal").setValue(totalAmount);
                 }
@@ -269,7 +269,7 @@ public class DailyAnlayticsActivity extends AppCompatActivity {
                         Object total = map.get("amount");
                         int pTotal = Integer.parseInt(String.valueOf(total));
                         totalAmount += pTotal;
-                        analyticsCharityAmount.setText("\u20B9" + String.valueOf(totalAmount));
+                        analyticsCharityAmount.setText("$" + String.valueOf(totalAmount));
                     }
                     personalRef.child("dayCharity").setValue(totalAmount);
                 }
@@ -312,7 +312,7 @@ public class DailyAnlayticsActivity extends AppCompatActivity {
                         Object total = map.get("amount");
                         int pTotal = Integer.parseInt(String.valueOf(total));
                         totalAmount += pTotal;
-                        analyticsHealthAmount.setText("\u20B9" + String.valueOf(totalAmount));
+                        analyticsHealthAmount.setText("$" + String.valueOf(totalAmount));
                     }
                     personalRef.child("dayHealth").setValue(totalAmount);
                 }
@@ -356,7 +356,7 @@ public class DailyAnlayticsActivity extends AppCompatActivity {
                         Object total = map.get("amount");
                         int pTotal = Integer.parseInt(String.valueOf(total));
                         totalAmount += pTotal;
-                        analyticsHouseAmount.setText("\u20B9" + String.valueOf(totalAmount));
+                        analyticsHouseAmount.setText("$" + String.valueOf(totalAmount));
                     }
                     personalRef.child("dayHouse").setValue(totalAmount);
                 }
@@ -399,7 +399,7 @@ public class DailyAnlayticsActivity extends AppCompatActivity {
                         Object total = map.get("amount");
                         int pTotal = Integer.parseInt(String.valueOf(total));
                         totalAmount += pTotal;
-                        analyticsEntertainmentAmount.setText("\u20B9" + String.valueOf(totalAmount));
+                        analyticsEntertainmentAmount.setText("$" + String.valueOf(totalAmount));
                     }
                     personalRef.child("dayEntertainment").setValue(totalAmount);
                 }
@@ -442,7 +442,7 @@ public class DailyAnlayticsActivity extends AppCompatActivity {
                         Object total = map.get("amount");
                         int pTotal = Integer.parseInt(String.valueOf(total));
                         totalAmount += pTotal;
-                        analyticsFoodAmount.setText("\u20B9" + String.valueOf(totalAmount));
+                        analyticsFoodAmount.setText("$" + String.valueOf(totalAmount));
                     }
                     personalRef.child("dayFood").setValue(totalAmount);
                 }
@@ -487,7 +487,7 @@ public class DailyAnlayticsActivity extends AppCompatActivity {
                         Object total = map.get("amount");
                         int pTotal = Integer.parseInt(String.valueOf(total));
                         totalAmount += pTotal;
-                        analyticsTransportAmount.setText("\u20B9" + String.valueOf(totalAmount));
+                        analyticsTransportAmount.setText("$" + String.valueOf(totalAmount));
                     }
                     personalRef.child("dayTrans").setValue(totalAmount);
                 }
@@ -528,8 +528,8 @@ public class DailyAnlayticsActivity extends AppCompatActivity {
                         totalAmount += pTotal;
                     }
                     System.out.println("DEEEEEBBBBBBBBBBUGGGG   " +totalAmount);
-                    totalBudgetAmountTextView.setText("Total Day's Spending \u20B9 "+totalAmount);
-                    monthSpentAmount.setText("Total Spent \u20B9 "+totalAmount);
+                    totalBudgetAmountTextView.setText("Total Day's Spending $"+totalAmount);
+                    monthSpentAmount.setText("Total Spent $ "+totalAmount);
                 }
                 else{
                     totalBudgetAmountTextView.setText("You've not spent today ");

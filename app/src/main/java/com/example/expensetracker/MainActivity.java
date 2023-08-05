@@ -49,12 +49,12 @@ public class MainActivity extends AppCompatActivity {
    private int TotalAmountBudgetC = 0;
 
 
-
+    // onCreate method
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+// Initialize views
         BudgetcardView = findViewById(R.id.BudgetCardView);
         TodayCardView = findViewById(R.id.TodayCardView);
         WeekCardView = findViewById(R.id.WeekCardView);
@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
      SavingTextView = findViewById(R.id.SavingTextView);
         todayTextView= findViewById(R.id.todayTextView);
 
-
+// Initialize Firebase Auth
 
         mAuth = FirebaseAuth.getInstance();
         if (mAuth.getCurrentUser() != null) {
@@ -141,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent4);
             }
         });
-
+// Listener to track budget changes
         budgetRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -168,6 +168,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Fetch the budget and spent amounts
            getBudgetAmount();
            getTodaySpentAmount();
            getWeekSpentAmount();
@@ -176,6 +177,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    // Method to fetch budget amount from Firebase
     private void getBudgetAmount() {
         budgetRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -186,7 +188,7 @@ public class MainActivity extends AppCompatActivity {
                         Map<String,Object> map = (Map<String, Object>)ds.getValue();
                         Object total  = map.get("amount");
                         int pTotal = Integer.parseInt(String.valueOf(total));
-                        TotalAMountBudget += pTotal;
+                        TotalAMountBudget = pTotal;
                         budgetTextView.setText("$"+String.valueOf(TotalAMountBudget));
                     }
 
@@ -205,7 +207,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-
+    // Method to fetch today's spent amount from Firebase
     private void getTodaySpentAmount() {
 
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
@@ -337,7 +339,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     int monthSpending;
                     if(snapshot.hasChild("month")){
-                       monthSpending = Integer.parseInt(Objects.requireNonNull(snapshot.child("month").getValue().toString()));
+                        monthSpending = Integer.parseInt(Objects.requireNonNull(snapshot.child("month").getValue().toString()));
                         System.out.println(monthSpending);
                     }else{
                         monthSpending = 0;
@@ -348,21 +350,25 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
 
+            // ...
+
+
+
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
 
             }
         });
     }
-
+    // Method to create options menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu,menu);
         return true;
     }
-
+    // Method to handle option item selections
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId()==R.id.account){

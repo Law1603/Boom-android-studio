@@ -64,8 +64,10 @@ public class BudgetActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Set the content view layout for the activity
         setContentView(R.layout.activity_budget);
         mAuth = FirebaseAuth.getInstance();
+        // Get reference to 'budget', 'expenses', and 'personal' nodes in Firebase Database
         budgetRef = FirebaseDatabase.getInstance().getReference().child("budget").child(mAuth.getCurrentUser().getUid());
         expenseRef = FirebaseDatabase.getInstance().getReference().child("expenses").child(mAuth.getCurrentUser().getUid());
         personalRef = FirebaseDatabase.getInstance().getReference().child("personal").child(mAuth.getCurrentUser().getUid());
@@ -87,7 +89,7 @@ public class BudgetActivity extends AppCompatActivity {
                 int totalAmount = 0;
                 for(DataSnapshot snap : snapshot.getChildren()){
                 Data data = snap.getValue(Data.class);
-                totalAmount += data.getAmount();
+                totalAmount = data.getAmount();
 
                 String sTotal = String.valueOf("Month Budget: $"+totalAmount);
 
@@ -112,27 +114,30 @@ public class BudgetActivity extends AppCompatActivity {
         budgetRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
+                // If the snapshot exists and it has at least one child (meaning at least one budget item exists)
                 if(snapshot.exists() && snapshot.getChildrenCount()>0){
                     int totalamount =0;
                     for (DataSnapshot ds :snapshot.getChildren()) {
-
+               // Get the budget item data and add its amount to the total amount
                         Data data = ds.getValue(Data.class);
                         totalamount+= data.getAmount();
-
+                        // Update the total budget amount TextView with the total amount
                         String sTotal = String.valueOf("Month Budget : $"+totalamount);
                         totalBudgetAmountTextView.setText(sTotal);
                     }
 
                     System.out.println("DEBUGING  "+totalamount);
+                    // Calculate weekly and daily budgets
                     int  weeklyBudget = totalamount/4;
                     int dailyBudget = totalamount/30;
+                    // Store the total, weekly, and daily budgets in the Firebase Realtime Database
                     personalRef.child("budget").setValue(totalamount);
                     personalRef.child("weeklybudget").setValue(weeklyBudget);
                     personalRef.child("dailybudget").setValue(dailyBudget);
                 }
-
+                // If the snapshot doesn't exist or it doesn't have any children (meaning no budget items exist
                 else {
+                    // Set the total, weekly, and daily budgets to 0 in the Firebase Realtime Database
                     personalRef.child("budget").setValue(0);
                     personalRef.child("weeklybudget").setValue(0);
                     personalRef.child("dailybudget").setValue(0);
@@ -146,7 +151,7 @@ public class BudgetActivity extends AppCompatActivity {
         });
 
 
-
+        // Call methods to get monthly budget ratios
         getMonthlyTransportBudgetRatios();
         getMonthlyFoodBudgetRatios();
         getMonthlyEntertainmentBudgetRatios();
@@ -165,19 +170,20 @@ public class BudgetActivity extends AppCompatActivity {
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
+                // If there is at least one budget item in the "Other" category
                 if(snapshot.exists()){
                     int ptotal =0;
                     for (DataSnapshot ds :snapshot.getChildren()) {
+                        // Get the amount of the current budget item and add it to the total amount
                         Map<String,Object> map = (Map<String, Object>)ds.getValue();
                         Object total  = map.get("amount");
                         ptotal = Integer.parseInt(String.valueOf(total));
                     }
-
+                    // Calculate the daily, weekly, and monthly budget ratios
                     int  dayOthRatio = ptotal/30;
                     int weekOthRatio = ptotal/4;
                     int monthOthRatio = ptotal;
-
+                    // Store the daily, weekly, and monthly budget ratios in the Firebase Realtime Database
                     personalRef.child("dayOtherRatio").setValue(dayOthRatio);
                     personalRef.child("weekOtherRatio").setValue(weekOthRatio);
                     personalRef.child("monthOtherRatio").setValue(monthOthRatio);
@@ -625,6 +631,7 @@ public class BudgetActivity extends AppCompatActivity {
              date.setText(itemDate);
         }
     }
+    // Method to update data
     private  void updateData(){
         AlertDialog.Builder myDialog = new AlertDialog.Builder(this);
         LayoutInflater inflater = LayoutInflater.from(this);

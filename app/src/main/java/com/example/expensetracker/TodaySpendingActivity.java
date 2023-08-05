@@ -63,31 +63,35 @@ public class TodaySpendingActivity extends AppCompatActivity {
 
 
     @Override
+    // This function is the first to be called when this activity is invoked.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_today_spending);
+        setContentView(R.layout.activity_today_spending);// Set the layout for this activity.
 
+        // Initialization of the toolbar and title.
         toolbar = findViewById(R.id.toolbar);
         getSupportActionBar().setTitle("Today's Spending");
 
         totalAmountSpentOn = findViewById(R.id.totalAmountSpentOn);
         progressBar = findViewById(R.id.progressBar);
 
-
+        // Initialization of UI components.
         fab = findViewById(R.id.fab);
+        // Initialize a progress dialog box.
         loader = new ProgressDialog(this);
-
+        // Get an instance of Firebase Authentication and the current user's ID.
         mAuth = FirebaseAuth.getInstance();
         onLineUserId = mAuth.getCurrentUser().getUid();
+        // Reference to the 'expenses' node in Firebase Database for the current user.
         expensesRef = FirebaseDatabase.getInstance().getReference("expenses").child(onLineUserId);
-
+        // Initialize Recycler view and its layout manager.
         recyclerView = findViewById(R.id.recyclerview);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setStackFromEnd(true);
         linearLayoutManager.setReverseLayout(true);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
+        // Initialize the data list and the adapter for RecyclerView.
         myDataList = new ArrayList<>();
         todayItemsAdapter = new TodayItemsAdapter(TodaySpendingActivity.this,myDataList);
         recyclerView.setAdapter(todayItemsAdapter);
@@ -102,17 +106,17 @@ public class TodaySpendingActivity extends AppCompatActivity {
         });
 
     }
-
+    // Function to read items from Firebase Database for today's spending.
     private void readItems() {
 
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         Calendar cal = Calendar.getInstance();
         String date = dateFormat.format(cal.getTime());
-
+        // Create a reference to Firebase Database for the current user's expenses.
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("expenses").child(onLineUserId);
 
 
-
+        // Query to fetch data for the current date.
         Query query = reference.orderByChild("date").equalTo(date);
         query.addValueEventListener(new ValueEventListener() {
             @Override
@@ -146,7 +150,7 @@ public class TodaySpendingActivity extends AppCompatActivity {
         });
 
     }
-
+    // Function to add a new spending item.
     private void addItemSpentOn() {
 
         AlertDialog.Builder myDialog = new AlertDialog.Builder(this);
@@ -156,7 +160,7 @@ public class TodaySpendingActivity extends AppCompatActivity {
 
         final AlertDialog dialog = myDialog.create();
         dialog.setCancelable(false);
-
+        // Get the reference of the UI components.
         final Spinner itemspinner = myview.findViewById(R.id.itemsspinner);
         final EditText amount = myview.findViewById(R.id.amount);
         final EditText note = myview.findViewById(R.id.note);

@@ -779,16 +779,16 @@ public class DailyAnlayticsActivity extends AppCompatActivity {
                     float monthPercent = (monthTotalSpentAmount/monthTotalSpentAmountRatio)*100;
 
                     if(monthPercent<50){
-                        MonthRatioSpending.setText(monthPercent+" %"+" used of "+monthTotalSpentAmountRatio+" \u20B9");
+                        MonthRatioSpending.setText(monthPercent+" %"+" used of "+monthTotalSpentAmountRatio+" $");
                         MonthRatioSpending_image.setImageResource(R.drawable.green);
 
                     }
                     else if(monthPercent>=50 && monthPercent<100 ){
-                        MonthRatioSpending.setText(monthPercent+" %"+" used of "+monthTotalSpentAmountRatio+" \u20B9");
+                        MonthRatioSpending.setText(monthPercent+" %"+" used of "+monthTotalSpentAmountRatio+" $");
                         MonthRatioSpending_image.setImageResource(R.drawable.brown);
 
                     }else{
-                        MonthRatioSpending.setText(monthPercent+" %"+" used of "+monthTotalSpentAmountRatio+" \u20B9");
+                        MonthRatioSpending.setText(monthPercent+" %"+" used of "+monthTotalSpentAmountRatio+" $");
                         MonthRatioSpending_image.setImageResource(R.drawable.red);
                     }
 
@@ -796,16 +796,16 @@ public class DailyAnlayticsActivity extends AppCompatActivity {
                     float TransPercent = (traTotal/traRatio)*100;
 
                     if(TransPercent<50){
-                        progress_ratio_Transport.setText(TransPercent+"%"+"used of "+traRatio+" \u20B9");
+                        progress_ratio_Transport.setText(TransPercent+"%"+"used of "+traRatio+" $");
                         status_image__Transport.setImageResource(R.drawable.green);
 
                     }
                     else if(TransPercent>=50 && TransPercent<100 ){
-                        progress_ratio_Transport.setText(TransPercent+"%"+"used of "+traRatio+" \u20B9");
+                        progress_ratio_Transport.setText(TransPercent+"%"+"used of "+traRatio+" $");
                         status_image__Transport.setImageResource(R.drawable.brown);
 
                     }else{
-                        progress_ratio_Transport.setText(TransPercent+"%"+"used of "+traRatio+" \u20B9");
+                        progress_ratio_Transport.setText(TransPercent+"%"+"used of "+traRatio+" $");
                         status_image__Transport.setImageResource(R.drawable.red);
                     }
 
@@ -813,16 +813,16 @@ public class DailyAnlayticsActivity extends AppCompatActivity {
                     float FoodPercent = (foodTotal/foodRatio)*100;
 
                     if(FoodPercent<50){
-                        progress_ratio_Food.setText(FoodPercent+" %"+" used of "+foodRatio+" \u20B9");
+                        progress_ratio_Food.setText(FoodPercent+" %"+" used of "+foodRatio+" $");
                         status_image__Food.setImageResource(R.drawable.green);
 
                     }
                     else if(FoodPercent>=50 && FoodPercent<100 ){
-                        progress_ratio_Food.setText(FoodPercent+" %"+" used of "+foodRatio+" \u20B9");
+                        progress_ratio_Food.setText(FoodPercent+" %"+" used of "+foodRatio+"$");
                         status_image__Food.setImageResource(R.drawable.brown);
 
                     }else{
-                        progress_ratio_Food.setText(FoodPercent+" %"+" used of "+foodRatio+" \u20B9");
+                        progress_ratio_Food.setText(FoodPercent+" %"+" used of "+foodRatio+" $");
                         status_image__Food.setImageResource(R.drawable.red);
                     }
 
@@ -830,48 +830,48 @@ public class DailyAnlayticsActivity extends AppCompatActivity {
                     float entPercent = (EntertainmentTotal/EntertainmentRatio)*100;
 
                     if(entPercent<50){
-                        progress_ratio_Entertainment.setText(entPercent+" %"+" used of "+EntertainmentRatio+" \u20B9");
+                        progress_ratio_Entertainment.setText(entPercent+" %"+" used of "+EntertainmentRatio+" $");
                         status_image__Entertainment.setImageResource(R.drawable.green);
 
                     }
                     else if(entPercent>=50 && entPercent<100 ){
-                        progress_ratio_Entertainment.setText(entPercent+" %"+" used of "+EntertainmentRatio+" \u20B9");
+                        progress_ratio_Entertainment.setText(entPercent+" %"+" used of "+EntertainmentRatio+" $");
                         status_image__Entertainment.setImageResource(R.drawable.brown);
 
                     }else{
-                        progress_ratio_Entertainment.setText(entPercent+" %"+" used of "+EntertainmentRatio+" \u20B9");
+                        progress_ratio_Entertainment.setText(entPercent+" %"+" used of "+EntertainmentRatio+"$ ");
                         status_image__Entertainment.setImageResource(R.drawable.red);
                     }
 
                     float HousePercent = (HouseTotal/HouseRatio)*100;
 
                     if(HousePercent<50){
-                        progress_ratio_House.setText(HousePercent+" %"+" used of "+HouseRatio+" \u20B9. Status");
+                        progress_ratio_House.setText(HousePercent+" %"+" used of "+HouseRatio+" $. Status");
                         status_image__House.setImageResource(R.drawable.green);
 
                     }
                     else if(HousePercent>=50 && HousePercent<100 ){
-                        progress_ratio_House.setText(HousePercent+" %"+" used of "+HouseRatio+" \u20B9");
+                        progress_ratio_House.setText(HousePercent+" %"+" used of "+HouseRatio+"$");
                         status_image__House.setImageResource(R.drawable.brown);
 
                     }else{
-                        progress_ratio_House.setText(HousePercent+" %"+" used of "+HouseRatio+" \u20B9");
+                        progress_ratio_House.setText(HousePercent+" %"+" used of "+HouseRatio+"$");
                         status_image__House.setImageResource(R.drawable.red);
                     }
 
                     float HealthPercent = (HealthTotal/HealthRatio)*100;
 
                     if(HealthPercent<50){
-                        progress_ratio_Health.setText(HealthPercent+" %"+" used of "+HealthRatio+" \u20B9");
+                        progress_ratio_Health.setText(HealthPercent+" %"+" used of "+HealthRatio+"$");
                         status_image__Health.setImageResource(R.drawable.green);
 
                     }
                     else if(HealthPercent>=50 && HealthPercent<100 ){
-                        progress_ratio_Health.setText(HealthPercent+" %"+" used of "+HealthRatio+" \u20B9");
+                        progress_ratio_Health.setText(HealthPercent+" %"+" used of "+HealthRatio+"$");
                         status_image__Health.setImageResource(R.drawable.brown);
 
                     }else{
-                        progress_ratio_Health.setText(HealthPercent+" %"+" used of "+HealthRatio+" \u20B9");
+                        progress_ratio_Health.setText(HealthPercent+" %"+" used of "+HealthRatio+"$");
                         status_image__Health.setImageResource(R.drawable.red);
                     }
 
@@ -879,32 +879,32 @@ public class DailyAnlayticsActivity extends AppCompatActivity {
                     float CharityPercent = (CharityTotal/CharityRatio)*100;
 
                     if(CharityPercent<50){
-                        progress_ratio_Charity.setText(CharityPercent+" %"+" used of "+CharityRatio+" \u20B9");
+                        progress_ratio_Charity.setText(CharityPercent+" %"+" used of "+CharityRatio+"$");
                         status_image__Charity.setImageResource(R.drawable.green);
 
                     }
                     else if(CharityPercent>=50 && CharityPercent<100 ){
-                        progress_ratio_Charity.setText(CharityPercent+" %"+" used of "+CharityRatio+" \u20B9");
+                        progress_ratio_Charity.setText(CharityPercent+" %"+" used of "+CharityRatio+"$");
                         status_image__Charity.setImageResource(R.drawable.brown);
 
                     }else{
-                        progress_ratio_Charity.setText(CharityPercent+" %"+" used of "+CharityRatio+" \u20B9");
+                        progress_ratio_Charity.setText(CharityPercent+" %"+" used of "+CharityRatio+"$");
                         status_image__Charity.setImageResource(R.drawable.red);
                     }
 
                     float PersonalPercent = (PersonalTotal/PersonalRatio)*100;
 
                     if(PersonalPercent<50){
-                        progress_ratio_Personal.setText(PersonalPercent+" %"+" used of "+PersonalRatio+" \u20B9");
+                        progress_ratio_Personal.setText(PersonalPercent+" %"+" used of "+PersonalRatio+"$");
                         status_image__Personal.setImageResource(R.drawable.green);
 
                     }
                     else if(PersonalPercent>=50 && PersonalPercent<100 ){
-                        progress_ratio_Personal.setText(PersonalPercent+" %"+" used of "+PersonalRatio+" \u20B9");
+                        progress_ratio_Personal.setText(PersonalPercent+" %"+" used of "+PersonalRatio+"$");
                         status_image__Personal.setImageResource(R.drawable.brown);
 
                     }else{
-                        progress_ratio_Personal.setText(PersonalPercent+" %"+" used of "+PersonalRatio+" \u20B9");
+                        progress_ratio_Personal.setText(PersonalPercent+" %"+" used of "+PersonalRatio+"$");
                         status_image__Personal.setImageResource(R.drawable.red);
                     }
 
@@ -912,16 +912,16 @@ public class DailyAnlayticsActivity extends AppCompatActivity {
                     float OtherPercent = (OtherTotal/OtherRatio)*100;
 
                     if(OtherPercent<50){
-                        progress_ratio_Other.setText(OtherPercent+" \u20B9"+" used of "+OtherRatio+" \u20B9");
+                        progress_ratio_Other.setText(OtherPercent+" $"+" used of "+OtherRatio+" $");
                         status_image__Other.setImageResource(R.drawable.green);
 
                     }
                     else if(OtherPercent>=50 && OtherPercent<100 ){
-                        progress_ratio_Other.setText(OtherPercent+" \u20B9"+" used of "+OtherRatio+" \u20B9");
+                        progress_ratio_Other.setText(OtherPercent+" $"+" used of "+OtherRatio+" $");
                         status_image__Other.setImageResource(R.drawable.brown);
 
                     }else{
-                        progress_ratio_Other.setText(OtherPercent+" \u20B9"+" used of "+OtherRatio+" \u20B9");
+                        progress_ratio_Other.setText(OtherPercent+" $"+" used of "+OtherRatio+" $");
                         status_image__Other.setImageResource(R.drawable.red);
                     }
 

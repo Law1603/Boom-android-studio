@@ -3,6 +3,7 @@
 # Boom
 # Using Android Studio and Firebase
 # Lawrence Molokwu 2023
+Detailed information on the application can be viewed here: Second Deliverable Report.pdf
 ![image](https://github.com/Law1603/Boom-android-studio/assets/78369461/c242499b-120e-40bf-80bd-4491c243bcfb)
 App Login screen
 ![image](https://github.com/Law1603/Boom-android-studio/assets/78369461/ecacc76f-2664-47c2-a841-fedb6b7f4ba5)
